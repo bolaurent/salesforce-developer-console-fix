@@ -11,7 +11,7 @@ This VisualForce page gives you a button that does that for you.
 
 ### Installation
 
-Because it's a VisualForce page, with no server side code and no static resources, it's dead-simple to install into your Salesforce instance (even production). Just create a VF page, and copy and paste this code from [DeveloperConsoleFix.page](https://github.com/bolaurent/salesforce-developer-console-fix/blob/master/DeveloperConsoleFix.page) (view it as raw). If your page is named DeveloperConsoleFix, the url will be /apex/DeveloperConsoleFix.
+Because it's a VisualForce page, with no server side code and no static resources, it's dead-simple to install into your Salesforce instance (even production). Just create a VF page, and copy and paste this code from [DeveloperConsoleFix.page](https://raw.githubusercontent.com/bolaurent/salesforce-developer-console-fix/master/DeveloperConsoleFix.page) (view it as raw). If your page is named DeveloperConsoleFix, the url will be /apex/DeveloperConsoleFix.
 
 ### Kudos
 
