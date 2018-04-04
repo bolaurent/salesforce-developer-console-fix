@@ -1,0 +1,80 @@
+<apex:page docType="html-5.0" id="thepage">
+  <!-- author Bo Laurent https://github.com/bolaurent -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jsforce/1.7.0/jsforce.min.js"></script>
+  
+  <apex:form id="theform">
+  <apex:pageblock id="thepageblock">
+  <apex:pageblockButtons location="top" id="buttons">
+    <apex:commandButton value="Delete my IDEWorkpace" 
+        onclick="deleteIDEWorkspace()"
+        disabled="True"
+        id="deletebutton"
+     />
+  </apex:pageblockButtons>  
+  <apex:pageBlockSection id="section">
+    <apex:pageblocksectionitem id="item1">
+        <apex:outputlabel value="IDEWorkspace ID:" styleclass="bold"/>
+        <apex:outputtext value="not found" id="IdDisplay" />
+    </apex:pageblocksectionitem>
+
+  </apex:pageBlockSection>
+  </apex:pageblock>
+  </apex:form>
+  
+  <apex:outputPanel id="emptypanel">
+  </apex:outputPanel>
+
+  <script>
+      var conn = new jsforce.Connection({ accessToken: '{!$Api.Session_Id}' });
+      var workspaceId;
+      var deleted = false;
+      var button = document.getElementById('{!$Component.thepage.theform.thepageblock.buttons.deletebutton}');
+      var notFoundMessage = 'No IDEWorkspace found for your user';
+      
+      var idDisplay = document.getElementById('{!$Component.thepage.theform.thepageblock.section.item1.IdDisplay}');
+
+      conn.tooling.query("select id, name, createdbyid from ideworkspace where createdbyid = '{!$User.Id}'", 
+          function(err, result) {
+              if (err) { alert(err); }
+              else if (result.totalSize > 1) {
+                  alert('Query returned multiple IDEWorkspaces ' + JSON.stringify(result));
+              }
+              else if (result.totalSize < 1) {
+                  idDisplay.innerHTML =  notFoundMessage;
+              }
+              else {
+                  // exactly one IDEWorkspace found for this user
+                  
+                  workspaceId = result.records[0].Id;
+                  console.log(workspaceId);
+                  button.className = "btn";
+                  button.disabled = false;
+                  document.getElementById('{!$Component.thepage.theform.thepageblock.section.item1.IdDisplay}').innerHTML =  workspaceId;
+              }
+      });
+
+      
+      function deleteIDEWorkspace() {
+      
+        conn.tooling.query("select id, name, createdbyid from ideworkspace where createdbyid = '{!$User.Id}'", 
+            function(err, result) {
+              if (err) { alert(err); }
+              else if (result.totalSize > 1) {alert('Query returned multiple IDEWorkspaces ' + JSON.stringify(result));}
+              else if (result.totalSize < 1) {alert('Could not determine Id of your IDEWorkspace');}
+              else {
+                  console.log(workspaceId);
+                  console.log("deleting...");
+                  conn.tooling.sobject('IDEWorkspace').delete(workspaceId, function(err, ret) {
+                      if (err || !ret.success) { return console.error(err, ret); }
+                      alert('Deleted IDEWorkspace Successfully : ' + ret.id);
+                      button.className = "btnDisabled";
+                      button.disabled = false;
+                  });
+              }
+        });
+      }
+
+
+  </script>
+
+</apex:page>
