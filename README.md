@@ -7,7 +7,11 @@ You know how sometime the Salesforce Developer Console sometimes hangs up? It st
 
 Googling for [salesforce developer console not loading](https://www.google.com/search?client=safari&rls=en&q=salesforce+developer+console+not+loading), I found that [Salesforce help gives a procedure](https://help.salesforce.com/articleView?id=000205964&language=en_US&type=1) for fixing this, but it's kind of a pain, involving sleuthing through the Developer Console's network interactions to find the Id of the state (the IDEWorkspace), and using the [Workbench](https://workbench.developerforce.com/login.php) to delete it.
 
-This VisualForce page gives you a button that does that for you. Because it's a VisualForce page, with no server side code and no static resources, it's dead-simple to install into your Salesforce instance (even production). Just create a VF page, and copy and paste this code.
+This VisualForce page gives you a button that does that for you. 
+
+### Installation
+
+Because it's a VisualForce page, with no server side code and no static resources, it's dead-simple to install into your Salesforce instance (even production). Just create a VF page, and copy and paste this code. If your page is named DeveloperConsoleFix, the url will be /apex/DeveloperConsoleFix.
 
 ### Kudos
 
