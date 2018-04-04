@@ -1,4 +1,6 @@
 # salesforce-developer-console-fix
+
+## Summary
 This VisualForce pages clears the current Salesforce user's developer console state.
 
 You know how sometime the Salesforce Developer Console sometimes hangs up? It stops loading, but does not provide any error message. If you look at the javascript console, you see that it has encountered an error and silently crashed.
@@ -7,7 +9,7 @@ Googling for [salesforce developer console not loading](https://www.google.com/s
 
 This VisualForce page gives you a button that does that for you. Because it's a VisualForce page, with no server side code and no static resources, it's dead-simple to install into your Salesforce instance (even production). Just create a VF page, and copy and paste this code.
 
-Kudos
+### Kudos
 
 Thanks to [stomita](https://github.com/stomita) for the amazing https://jsforce.github.io library, which provides access to all the Salesforce APIs.
 
