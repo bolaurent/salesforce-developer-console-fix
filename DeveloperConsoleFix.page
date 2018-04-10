@@ -1,6 +1,22 @@
 <apex:page docType="html-5.0" id="thepage">
-  <!-- author Bo Laurent https://github.com/bolaurent -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jsforce/1.7.0/jsforce.min.js"></script>
+  
+  <p>
+Yes, "Delete my IDEWorkspace" sounds a little scary. But that's actually what this script will do.
+The developer console state is maintained in a record in table IDEWorkspace. 
+When that record is deleted, there is no state. If the dev
+console decides to save something, it notices that and creates a new record.
+  </p>
+  
+  <p>
+This is not really documented anywhere. You can learn a little bit by reading
+the Salesforce help article <a href="https://help.salesforce.com/articleView?id=000205964&language=en_US&type=1">Developer Console menus not working</a>
+The API we are using is the 
+<a href="https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/">Tooling API</a>. 
+The documentation merely notes that "The following
+Tooling API objects are used internally by the Developer Console."
+
+  </p>
   
   <apex:form id="theform">
   <apex:pageblock id="thepageblock">
